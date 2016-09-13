@@ -106,22 +106,22 @@ public class TreeNode<E> extends OfTree<E, TreeNode<E>> {
         }
     }
 
-    /**
-     * <p>
-     * Constructs an instance with specified value and values of child nodes. Child nodes and its parent (this) will be
-     * bidirectional link.
-     * </p>
-     * 
-     * @param value
-     *            specified value
-     * @param childrenValues
-     *            values of child nodes
-     * @since 0.0.0
-     */
-    @SafeVarargs
-    public TreeNode(@Nullable E value, @Nullable E... childrenValues) {
-        this(value, CollectionQuicker.convert(childrenValues, TreeNode.class, e -> new TreeNode<E>(e)));
-    }
+//    /**
+//     * <p>
+//     * Constructs an instance with specified value and values of child nodes. Child nodes and its parent (this) will be
+//     * bidirectional link.
+//     * </p>
+//     *
+//     * @param value
+//     *            specified value
+//     * @param childrenValues
+//     *            values of child nodes
+//     * @since 0.0.0
+//     */
+//    @SafeVarargs
+//    public TreeNode(@Nullable E value, @Nullable E... childrenValues) {
+//        this(value, CollectionQuicker.convert(childrenValues, TreeNode.class, e -> new TreeNode<E>(e)));
+//    }
 
     @Override
     @SuppressWarnings("unchecked")
@@ -507,7 +507,7 @@ public class TreeNode<E> extends OfTree<E, TreeNode<E>> {
         List<TreeNode<E>> list = getBackedChildren();
         if (index >= list.size()) {
             CollectionQuicker.addAll(list, CollectionQuicker.multipleSingletonElementList(null, index - list.size()));
-            Quicker.each(values, v -> addChildByValue(v));
+            Quicker.each(values, v -> {addChildByValue(v);});
         } else {
             list.addAll(index, CollectionQuicker.convert(new ArrayList<>(), Arrays.asList(values), v -> createNode(v)));
         }
@@ -533,7 +533,7 @@ public class TreeNode<E> extends OfTree<E, TreeNode<E>> {
         List<TreeNode<E>> list = getBackedChildren();
         if (index >= list.size()) {
             CollectionQuicker.addAll(list, CollectionQuicker.multipleSingletonElementList(null, index - list.size()));
-            Quicker.each(values, v -> addChildByValue(v));
+            Quicker.each(values, v -> {addChildByValue(v);});
         } else {
             list.addAll(index, CollectionQuicker.convert(new ArrayList<>(), values, v -> createNode(v)));
         }

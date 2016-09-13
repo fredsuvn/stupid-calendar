@@ -36,8 +36,6 @@ public class ToStringQuicker {
      *            type of array
      * @param array
      *            given array
-     * @param config
-     *            specified config
      * @return string after joining
      * @see ToStringConfig
      * @since 0.0.0
@@ -144,8 +142,6 @@ public class ToStringQuicker {
      * 
      * @param iterable
      *            given iterable
-     * @param config
-     *            specified config
      * @return string after joining
      * @see ToStringConfig
      * @since 0.0.0
@@ -873,14 +869,12 @@ public class ToStringQuicker {
              *            suffix for non-array object
              * @param objectFieldValueIndicator
              *            field value indicator for non-array object
-             * @param objectSeparator
-             *            separator for non-array object
              * @param arrayPrefix
              *            prefix for array object
              * @param arraySuffix
              *            suffix for array object
-             * @param arraySeparator
-             *            separator for array object
+             * @param joinSeparator
+             *            join separator
              * @return this builder
              * @since 0.0.0
              */
@@ -916,13 +910,14 @@ public class ToStringQuicker {
              * Sets valueOf function. If given valueOf function is null, set {@linkplain #DEFAULT_VALUE_OF_FUNCTION}.
              * </p>
              * 
-             * @param valueOf
+             * @param valueOfFunction
              *            given valueOf function
              * @return this builder
              * @since 0.0.0
              */
             public Builder setValueOfFunction(@Nullable Function<? super Object, String> valueOfFunction) {
-                this.valueOfFunction = Quicker.require(valueOfFunction, () -> DEFAULT_VALUE_OF_FUNCTION);
+                //this.valueOfFunction = Quicker.require(valueOfFunction, () -> DEFAULT_VALUE_OF_FUNCTION);
+                this.valueOfFunction = valueOfFunction == null ? DEFAULT_VALUE_OF_FUNCTION : valueOfFunction;
                 return this;
             }
 

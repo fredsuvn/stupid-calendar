@@ -59,7 +59,7 @@ public class Quicker {
      * <p>
      * Returns default logger of this library. It's config in config.properties.
      * </p>
-     * 
+     *
      * @return
      * @since 0.0.0
      */
@@ -77,15 +77,17 @@ public class Quicker {
      * Puts specified value with the specified key in current thread. If current thread previously contained a mapping
      * for the key, the old value is replaced by the specified value.
      * </p>
-     * 
+     *
      * @param key
-     *            specified key
+     *         specified key
      * @param value
-     *            specified value
+     *         specified value
      * @return the previous value associated with key, or null if there was no mapping for key
      * @since 0.0.0
      */
-    public static @Nullable Object put(@Nullable Object key, @Nullable Object value) {
+    public static
+    @Nullable
+    Object put(@Nullable Object key, @Nullable Object value) {
         return currentLocal.get().put(key, value);
     }
 
@@ -94,14 +96,16 @@ public class Quicker {
      * Returns the value to which the specified key is mapped in current thread, or null if current thread contains no
      * mapping for the key.
      * </p>
-     * 
+     *
      * @param key
-     *            specified key
+     *         specified key
      * @return the value to which the specified key is mapped in current thread, or null if current thread contains no
-     *         mapping for the key
+     * mapping for the key
      * @since 0.0.0
      */
-    public static @Nullable Object get(@Nullable Object key) {
+    public static
+    @Nullable
+    Object get(@Nullable Object key) {
         return currentLocal.get().get(key);
     }
 
@@ -109,13 +113,15 @@ public class Quicker {
      * <p>
      * Removes the mapping for specified key from current thread if it is present.
      * </p>
-     * 
+     *
      * @param key
-     *            specified key
+     *         specified key
      * @return the previous value associated with key, or null if there was no mapping for key
      * @since 0.0.0
      */
-    public static @Nullable Object remove(@Nullable Object key) {
+    public static
+    @Nullable
+    Object remove(@Nullable Object key) {
         return currentLocal.get().remove(key);
     }
 
@@ -123,7 +129,7 @@ public class Quicker {
      * <p>
      * Removes all of the mappings from current thread.
      * </p>
-     * 
+     *
      * @since 0.0.0
      */
     public static void clear() {
@@ -155,7 +161,7 @@ public class Quicker {
             clocker = new long[2];
             local[LOCAL_INDEX_CLOCKER] = clocker;
         }
-        return (long[])clocker;
+        return (long[]) clocker;
     }
 
     /**
@@ -165,7 +171,7 @@ public class Quicker {
      * </p>
      * <p>
      * For example:
-     * 
+     * <p>
      * <pre>
      * long l1 = Quicker.clockMillis();
      * do something...
@@ -173,10 +179,10 @@ public class Quicker {
      * System.out.println(l1);
      * System.out.println(l2);
      * </pre>
-     * 
+     * <p>
      * In above codes, l1 will be printed into 0 (if it is the first calling in current thread), and l2 will be the
      * milliseconds cost of "do something". it is equivalent to:
-     * 
+     * <p>
      * <pre>
      * long l1 = System.currentTimeMillis();
      * do something...
@@ -184,9 +190,9 @@ public class Quicker {
      * System.out.println(0);
      * System.out.println(l2 - l1);
      * </pre>
-     * 
+     * <p>
      * </p>
-     * 
+     *
      * @since 0.0.0
      */
     public static long clockMillis() {
@@ -209,7 +215,7 @@ public class Quicker {
      * </p>
      * <p>
      * For example:
-     * 
+     * <p>
      * <pre>
      * long l1 = Quicker.clockNano();
      * do something...
@@ -217,10 +223,10 @@ public class Quicker {
      * System.out.println(l1);
      * System.out.println(l2);
      * </pre>
-     * 
+     * <p>
      * In above codes, l1 will be printed into 0 (if it is the first calling in current thread), and l2 will be the
      * nanoseconds cost of "do something". it is equivalent to:
-     * 
+     * <p>
      * <pre>
      * long l1 = System.nanoTime();
      * do something...
@@ -228,9 +234,9 @@ public class Quicker {
      * System.out.println(0);
      * System.out.println(l2 - l1);
      * </pre>
-     * 
+     * <p>
      * </p>
-     * 
+     *
      * @since 0.0.0
      */
     public static long clockNano() {
@@ -254,19 +260,19 @@ public class Quicker {
      * </p>
      * <p>
      * For example:
-     * 
+     * <p>
      * <pre>
      * Quicker.calculate("(1 + 2) * 3 % 4 + max(max(-5, 6.5, 100), max(3, 555, 8,), 88)*(2)");
      * </pre>
-     * 
+     * <p>
      * Result of above codes is 1111. More detail see {@linkplain Calculator}.
      * </p>
-     * 
+     *
      * @param expr
-     *            arithmetic expression, not null
+     *         arithmetic expression, not null
      * @return result of the expression, not null
      * @throws ParsingException
-     *             if any problem occurs when parsing
+     *         if any problem occurs when parsing
      * @since 0.0.0
      */
     public static BigDecimal calculate(String expr) throws ParsingException {
@@ -276,21 +282,21 @@ public class Quicker {
             calculator = new Calculator();
             local[LOCAL_INDEX_CALCULATOR] = calculator;
         }
-        return ((Calculator)calculator).calculate(expr);
+        return ((Calculator) calculator).calculate(expr);
     }
 
     /**
      * <p>
      * Returns given required object if it is not null, or throws a {@linkplain NullPointerException} if it is null.
      * </p>
-     * 
+     *
      * @param <T>
-     *            type of required object
+     *         type of required object
      * @param required
-     *            given required object
+     *         given required object
      * @return given required object if it is not null
      * @throws NullPointerException
-     *             if given required object is null
+     *         if given required object is null
      * @since 0.0.0
      */
     public static <T> T require(T required) throws NullPointerException {
@@ -302,12 +308,12 @@ public class Quicker {
      * <p>
      * Returns given integer if given integer > 0.
      * </p>
-     * 
+     *
      * @param i
-     *            given integer
+     *         given integer
      * @return given integer if given integer > 0
      * @throws IllegalArgumentException
-     *             if given integer <= 0
+     *         if given integer <= 0
      * @since 0.0.0
      */
     public static int requirePositive(int i) throws IllegalArgumentException {
@@ -319,12 +325,12 @@ public class Quicker {
      * <p>
      * Returns given long integer if given long integer > 0.
      * </p>
-     * 
+     *
      * @param i
-     *            given long integer
+     *         given long integer
      * @return given long integer if given long integer > 0
      * @throws IllegalArgumentException
-     *             if given long integer <= 0
+     *         if given long integer <= 0
      * @since 0.0.0
      */
     public static long requirePositive(long i) throws IllegalArgumentException {
@@ -336,12 +342,12 @@ public class Quicker {
      * <p>
      * Returns given integer if given integer >= 0.
      * </p>
-     * 
+     *
      * @param i
-     *            given integer
+     *         given integer
      * @return given integer if given integer >= 0
      * @throws IllegalArgumentException
-     *             if given integer < 0
+     *         if given integer < 0
      * @since 0.0.0
      */
     public static int requirePositiveOr0(int i) throws IllegalArgumentException {
@@ -353,12 +359,12 @@ public class Quicker {
      * <p>
      * Returns given long integer if given long integer >= 0.
      * </p>
-     * 
+     *
      * @param i
-     *            given long integer
+     *         given long integer
      * @return given long integer if given long integer >= 0
      * @throws IllegalArgumentException
-     *             if given long integer < 0
+     *         if given long integer < 0
      * @since 0.0.0
      */
     public static long requirePositiveOr0(long i) throws IllegalArgumentException {
@@ -370,16 +376,16 @@ public class Quicker {
      * <p>
      * Returns given required object if it is not null, or {@code ifNull}.get() if it is null.
      * </p>
-     * 
+     *
      * @param <T>
-     *            type of required object
+     *         type of required object
      * @param required
-     *            given required object
+     *         given required object
      * @param ifNull
-     *            supplier for null given object
+     *         supplier for null given object
      * @return given required object if it is not null, or {@code ifNull}.get() if it is null
      * @throws NullPointerException
-     *             if given required object and {@code ifNull} (or its get()) are both null
+     *         if given required object and {@code ifNull} (or its get()) are both null
      * @since 0.0.0
      */
     public static <T> T require(@Nullable T required, @Nullable Supplier<? extends T> ifNull)
@@ -392,24 +398,24 @@ public class Quicker {
      * Returns required object associated by given object. If given object is null, return {@code ifNull}.get().
      * Otherwise return {@code ifNonNull}.apply(given). Both supplier and function cannot return a null.
      * </p>
-     * 
+     *
      * @param <T>
-     *            type of given object
+     *         type of given object
      * @param <R>
-     *            type of required object
+     *         type of required object
      * @param given
-     *            given object
+     *         given object
      * @param ifNull
-     *            required object supplier for null given object
+     *         required object supplier for null given object
      * @param ifNonnull
-     *            required object function for non-null given object
+     *         required object function for non-null given object
      * @return {@code ifNull}.get() if given object is null, else {@code ifNonNull}.apply(given)
      * @throws NullPointerException
-     *             if needed one of {@code ifNull} or {@code ifNonNull} is null
+     *         if needed one of {@code ifNull} or {@code ifNonNull} is null
      * @since 0.0.0
      */
     public static <T, R> R require(@Nullable T given, @Nullable Supplier<? extends R> ifNull,
-            @Nullable Function<? super T, ? extends R> ifNonnull) throws NullPointerException {
+                                   @Nullable Function<? super T, ? extends R> ifNonnull) throws NullPointerException {
         return given == null ? require(require(ifNull).get()) : require(require(ifNonnull).apply(given));
     }
 
@@ -417,14 +423,14 @@ public class Quicker {
      * <p>
      * If given string is non-null and non-empty, return itself; else throw an exception.
      * </p>
-     * 
+     *
      * @param str
-     *            given string
+     *         given string
      * @return given string itself
      * @throws NullPointerException
-     *             if given string is null
+     *         if given string is null
      * @throws IllegalArgumentException
-     *             if given string is empty
+     *         if given string is empty
      * @since 0.0.0
      */
     public static String requireNonEmpty(@Nullable String str) throws NullPointerException, IllegalArgumentException {
@@ -437,20 +443,22 @@ public class Quicker {
      * Returns required object associated by given object. If given object and {@code ifNonNull} are null, return null.
      * Otherwise return {@code ifNonNull}.apply(given).
      * </p>
-     * 
+     *
      * @param <T>
-     *            type of given object
+     *         type of given object
      * @param <R>
-     *            type of required object
+     *         type of required object
      * @param given
-     *            given object
+     *         given object
      * @param ifNonnull
-     *            required object function for non-null given object
+     *         required object function for non-null given object
      * @return {@code ifNonNull}.apply(given) if given object and {@code ifNonNull} are non-null, else null
      * @since 0.0.0
      */
-    public static @Nullable <T, R> R tryRequire(@Nullable T given,
-            @Nullable Function<? super T, ? extends R> ifNonnull) {
+    public static
+    @Nullable
+    <T, R> R tryRequire(@Nullable T given,
+                        @Nullable Function<? super T, ? extends R> ifNonnull) {
         if (given == null || ifNonnull == null) {
             return null;
         }
@@ -465,22 +473,24 @@ public class Quicker {
      * are permitted to be null. If {@code ifNull} or {@code ifNonNull} is null, it will be seen as a supplier or
      * function which returns a null.
      * </p>
-     * 
+     *
      * @param <T>
-     *            type of given object
+     *         type of given object
      * @param <R>
-     *            type of required object
+     *         type of required object
      * @param given
-     *            given object
+     *         given object
      * @param ifNull
-     *            required object supplier for null given object
+     *         required object supplier for null given object
      * @param ifNonNull
-     *            required object function for non-null given object
+     *         required object function for non-null given object
      * @return {@code ifNull}.get() if given object is null, else {@code ifNonNull}.apply(given)
      * @since 0.0.0
      */
-    public static @Nullable <T, R> R tryRequire(@Nullable T given, @Nullable Supplier<? extends R> ifNull,
-            @Nullable Function<? super T, ? extends R> ifNonNull) {
+    public static
+    @Nullable
+    <T, R> R tryRequire(@Nullable T given, @Nullable Supplier<? extends R> ifNull,
+                        @Nullable Function<? super T, ? extends R> ifNonNull) {
         return given == null ? (ifNull == null ? null : ifNull.get())
                 : (ifNonNull == null ? null : ifNonNull.apply(given));
     }
@@ -490,17 +500,19 @@ public class Quicker {
      * Tries to return the non-null argument of given arguments in parameters order. If all arguments are null, return
      * null.
      * </p>
-     * 
+     *
      * @param <T>
-     *            type of given object
+     *         type of given object
      * @param arg0
-     *            first argument
+     *         first argument
      * @param arg1
-     *            second argument
+     *         second argument
      * @return first non-null argument of given arguments or null if not found
      * @since 0.0.0
      */
-    public static @Nullable <T> T tryRequire(@Nullable T arg0, @Nullable T arg1) {
+    public static
+    @Nullable
+    <T> T tryRequire(@Nullable T arg0, @Nullable T arg1) {
         if (arg0 != null) {
             return arg0;
         }
@@ -515,19 +527,20 @@ public class Quicker {
      * Tries to return the non-null argument of given arguments in parameters order. If all arguments are null, return
      * null.
      * </p>
-     * 
+     *
      * @param <T>
-     *            type of given object
+     *         type of given object
      * @param arg0
-     *            first argument
+     *         first argument
      * @param arg1
-     *            second argument
-     * @param arg3
-     *            third argument
+     *         second argument
+     * @param arg2
+     *         third argument
      * @return first non-null argument of given arguments or null if not found
      * @since 0.0.0
      */
-    public static @Nullable <T> T tryRequire(@Nullable T arg0, @Nullable T arg1, @Nullable T arg2) {
+    @Nullable
+    public static <T> T tryRequire(@Nullable T arg0, @Nullable T arg1, @Nullable T arg2) {
         if (arg0 != null) {
             return arg0;
         }
@@ -545,16 +558,17 @@ public class Quicker {
      * Tries to return the non-null argument of given arguments in parameters order. If all arguments are null, return
      * null.
      * </p>
-     * 
+     *
      * @param <T>
-     *            type of given object
+     *         type of given object
      * @param args
-     *            given arguments
+     *         given arguments
      * @return first non-null argument of given arguments or null if not found
      * @since 0.0.0
      */
     @SafeVarargs
-    public static @Nullable <T> T tryRequire(@Nullable T... args) {
+    @Nullable
+    public static <T> T tryRequire(@Nullable T... args) {
         return search(args, t -> t != null).getValue();
     }
 
@@ -563,17 +577,19 @@ public class Quicker {
      * Tries to return the non-null argument of given argument suppliers in parameters order. If all suppliers or get()
      * of suppliers are null, return null.
      * </p>
-     * 
+     *
      * @param <T>
-     *            type of given object
+     *         type of given object
      * @param s0
-     *            first supplier
+     *         first supplier
      * @param s1
-     *            second supplier
+     *         second supplier
      * @return first non-null argument of given argument suppliers or null if not found
      * @since 0.0.0
      */
-    public static @Nullable <T> T tryRequire(@Nullable Supplier<? extends T> s0, @Nullable Supplier<? extends T> s1) {
+    public static
+    @Nullable
+    <T> T tryRequire(@Nullable Supplier<? extends T> s0, @Nullable Supplier<? extends T> s1) {
         T ret = null;
         if (s0 != null) {
             ret = s0.get();
@@ -595,20 +611,22 @@ public class Quicker {
      * Tries to return the non-null argument of given argument suppliers in parameters order. If all suppliers or get()
      * of suppliers are null, return null.
      * </p>
-     * 
+     *
      * @param <T>
-     *            type of given object
+     *         type of given object
      * @param s0
-     *            first supplier
+     *         first supplier
      * @param s1
-     *            second supplier
+     *         second supplier
      * @param s2
-     *            third supplier
+     *         third supplier
      * @return first non-null argument of given argument suppliers or null if not found
      * @since 0.0.0
      */
-    public static @Nullable <T> T tryRequire(@Nullable Supplier<? extends T> s0, @Nullable Supplier<? extends T> s1,
-            @Nullable Supplier<? extends T> s2) {
+    public static
+    @Nullable
+    <T> T tryRequire(@Nullable Supplier<? extends T> s0, @Nullable Supplier<? extends T> s1,
+                     @Nullable Supplier<? extends T> s2) {
         T ret = null;
         if (s0 != null) {
             ret = s0.get();
@@ -636,16 +654,18 @@ public class Quicker {
      * Tries to return the non-null argument of given argument suppliers in parameters order. If all suppliers or get()
      * of suppliers are null, return null.
      * </p>
-     * 
+     *
      * @param <T>
-     *            type of given object
+     *         type of given object
      * @param args
-     *            given argument suppliers
+     *         given argument suppliers
      * @return first non-null argument of given argument suppliers or null if not found
      * @since 0.0.0
      */
     @SafeVarargs
-    public static @Nullable <T> T tryRequire(@Nullable Supplier<T>... args) {
+    public static
+    @Nullable
+    <T> T tryRequire(@Nullable Supplier<T>... args) {
         Supplier<T> st = search(args, s -> s != null && s.get() != null).getValue();
         return tryRequire(st, sup -> sup.get());
     }
@@ -654,17 +674,19 @@ public class Quicker {
      * <p>
      * Upper casts given iterator. If given iterator is null, return null.
      * </p>
-     * 
+     *
      * @param <E>
-     *            component type
+     *         component type
      * @param iterator
-     *            given iterator
+     *         given iterator
      * @return itself after casting
      * @since 0.0.0
      */
-    public static final @Nullable <E> Iterator<E> upperCast(@Nullable Iterator<? extends E> iterator) {
+    public static final
+    @Nullable
+    <E> Iterator<E> upperCast(@Nullable Iterator<? extends E> iterator) {
         @SuppressWarnings("unchecked")
-        Iterator<E> it = (Iterator<E>)iterator;
+        Iterator<E> it = (Iterator<E>) iterator;
         return it;
     }
 
@@ -672,17 +694,17 @@ public class Quicker {
      * <p>
      * Upper casts given spliterator. If given spliterator is null, return null.
      * </p>
-     * 
+     *
      * @param <E>
-     *            component type
+     *         component type
      * @param spliterator
-     *            given spliterator
+     *         given spliterator
      * @return itself after casting
      * @since 0.0.0
      */
     public static final <E> Spliterator<E> upperCast(Spliterator<? extends E> spliterator) {
         @SuppressWarnings("unchecked")
-        Spliterator<E> sp = (Spliterator<E>)spliterator;
+        Spliterator<E> sp = (Spliterator<E>) spliterator;
         return sp;
     }
 
@@ -690,17 +712,17 @@ public class Quicker {
      * <p>
      * Upper casts given iterable. If given iterable is null, return null.
      * </p>
-     * 
+     *
      * @param <E>
-     *            component type
+     *         component type
      * @param iterable
-     *            given iterable
+     *         given iterable
      * @return itself after casting
      * @since 0.0.0
      */
     public static final <E> Iterable<E> upperCast(Iterable<? extends E> iterable) {
         @SuppressWarnings("unchecked")
-        Iterable<E> it = (Iterable<E>)iterable;
+        Iterable<E> it = (Iterable<E>) iterable;
         return it;
     }
 
@@ -708,17 +730,17 @@ public class Quicker {
      * <p>
      * Upper casts given stream. If given stream is null, return null.
      * </p>
-     * 
+     *
      * @param <E>
-     *            component type
+     *         component type
      * @param stream
-     *            given stream
+     *         given stream
      * @return itself after casting
      * @since 0.0.0
      */
     public static final <E> Stream<E> upperCast(Stream<? extends E> stream) {
         @SuppressWarnings("unchecked")
-        Stream<E> st = (Stream<E>)stream;
+        Stream<E> st = (Stream<E>) stream;
         return st;
     }
 
@@ -726,9 +748,9 @@ public class Quicker {
      * <p>
      * Returns a non-null string. If given string is null, return an empty string; else return itself.
      * </p>
-     * 
+     *
      * @param str
-     *            given string
+     *         given string
      * @return a non-null string
      * @since 0.0.0
      */
@@ -740,11 +762,11 @@ public class Quicker {
      * <p>
      * Returns a non-null iterator. If given iterator is null, return an empty iterator; else return itself.
      * </p>
-     * 
+     *
      * @param <E>
-     *            component type of iterator
+     *         component type of iterator
      * @param iterator
-     *            given iterator
+     *         given iterator
      * @return a non-null iterator
      * @since 0.0.0
      */
@@ -756,11 +778,11 @@ public class Quicker {
      * <p>
      * Returns a non-null spliterator. If given spliterator is null, return an empty spliterator; else return itself.
      * </p>
-     * 
+     *
      * @param <E>
-     *            component type of spliterator
+     *         component type of spliterator
      * @param spliterator
-     *            given spliterator
+     *         given spliterator
      * @return a non-null iterator
      * @since 0.0.0
      */
@@ -772,11 +794,11 @@ public class Quicker {
      * <p>
      * Returns a non-null iterable. If given iterable is null, return an empty iterable; else return itself.
      * </p>
-     * 
+     *
      * @param <E>
-     *            component type of iterable
+     *         component type of iterable
      * @param iterable
-     *            given iterable
+     *         given iterable
      * @return a non-null iterable
      * @since 0.0.0
      */
@@ -788,11 +810,11 @@ public class Quicker {
      * <p>
      * Returns a non-null stream. If given stream is null, return an empty stream; else return itself.
      * </p>
-     * 
+     *
      * @param <E>
-     *            component type of stream
+     *         component type of stream
      * @param stream
-     *            given stream
+     *         given stream
      * @return a non-null stream
      * @since 0.0.0
      */
@@ -805,11 +827,11 @@ public class Quicker {
      * Returns a non-null list. If given list is null, return an empty serializable list (immutable); else return
      * itself.
      * </p>
-     * 
+     *
      * @param <E>
-     *            component type of list
+     *         component type of list
      * @param list
-     *            given list
+     *         given list
      * @return a non-null list
      * @since 0.0.0
      */
@@ -821,11 +843,11 @@ public class Quicker {
      * <p>
      * Returns a non-null set. If given set is null, return an empty serializable set (immutable); else return itself.
      * </p>
-     * 
+     *
      * @param <E>
-     *            component type of set
+     *         component type of set
      * @param set
-     *            given set
+     *         given set
      * @return a non-null set
      * @since 0.0.0
      */
@@ -837,13 +859,13 @@ public class Quicker {
      * <p>
      * Returns a non-null map. If given map is null, return an empty serializable map (immutable); else return itself.
      * </p>
-     * 
+     *
      * @param <K>
-     *            type of map keys
+     *         type of map keys
      * @param <V>
-     *            type of map values
+     *         type of map values
      * @param map
-     *            given map
+     *         given map
      * @return a non-null map
      * @since 0.0.0
      */
@@ -855,11 +877,11 @@ public class Quicker {
      * <p>
      * Returns an iterator backed by given array. If given array is null, return an empty iterator.
      * </p>
-     * 
+     *
      * @param <E>
-     *            component type
+     *         component type
      * @param array
-     *            given array
+     *         given array
      * @return an iterator backed by given array
      * @since 0.0.0
      */
@@ -872,22 +894,22 @@ public class Quicker {
      * Returns an iterator of which elements are backed and converted from given iterator and converter. If given
      * iterator is null, return an empty iterator.
      * </p>
-     * 
+     *
      * @param <T>
-     *            component type of given iterator
+     *         component type of given iterator
      * @param <R>
-     *            component type of returned iterator
+     *         component type of returned iterator
      * @param iterator
-     *            given iterator
+     *         given iterator
      * @param converter
-     *            given converter
+     *         given converter
      * @return an iterator of which elements are converted from given iterator and converter
      * @throws NullPointerException
-     *             if given converter is null when it is needed
+     *         if given converter is null when it is needed
      * @since 0.0.0
      */
     public static <T, R> Iterator<R> iterator(@Nullable Iterator<? extends T> iterator,
-            Function<? super T, ? extends R> converter) throws NullPointerException {
+                                              Function<? super T, ? extends R> converter) throws NullPointerException {
         if (iterator == null) {
             return Consts.emptyIterator();
         }
@@ -914,11 +936,11 @@ public class Quicker {
      * <p>
      * Returns an iterable backed by given iterator. If given iterator is null, return an empty iterable.
      * </p>
-     * 
+     *
      * @param <E>
-     *            component type
+     *         component type
      * @param spliterator
-     *            given iterator
+     *         given iterator
      * @return an iterable backed by given iterator
      * @since 0.0.0
      */
@@ -930,11 +952,11 @@ public class Quicker {
      * <p>
      * Returns an endless iterator backed by given supplier. If given supplier is null, return an empty iterator.
      * </p>
-     * 
+     *
      * @param <E>
-     *            component type
+     *         component type
      * @param supplier
-     *            given supplier
+     *         given supplier
      * @return an endless iterator backed by given supplier
      * @since 0.0.0
      */
@@ -960,11 +982,11 @@ public class Quicker {
      * <p>
      * Returns an iterator combines given iterators. If given iterators is null, return an empty iterator.
      * </p>
-     * 
+     *
      * @param <E>
-     *            component type
+     *         component type
      * @param iterators
-     *            given iterators
+     *         given iterators
      * @return iterator combines given iterators
      * @since 0.0.0
      */
@@ -1016,11 +1038,11 @@ public class Quicker {
      * Returns an iterator of which elements are non-null elements from given iterator. If given iterator is null,
      * return an empty iterator.
      * </p>
-     * 
+     *
      * @param <E>
-     *            component type
+     *         component type
      * @param iterator
-     *            given iterator
+     *         given iterator
      * @return an iterator of which elements are non-null elements from given iterator
      * @since 0.0.0
      */
@@ -1072,11 +1094,11 @@ public class Quicker {
      * <p>
      * Returns a spliterator backed by given array. If given array is null, return an empty spliterator.
      * </p>
-     * 
+     *
      * @param <E>
-     *            component type
+     *         component type
      * @param array
-     *            given array
+     *         given array
      * @return a spliterator backed by given array
      * @since 0.0.0
      */
@@ -1120,10 +1142,12 @@ public class Quicker {
 
     private static class SortedConvertingSpliterator<T, R> extends ConvertingSpliterator<T, R> {
 
-        private final @Nullable Comparator<? super R> comparator;
+        private final
+        @Nullable
+        Comparator<? super R> comparator;
 
         public SortedConvertingSpliterator(Spliterator<T> source, Function<? super T, ? extends R> converter,
-                Comparator<? super R> comparator) {
+                                           Comparator<? super R> comparator) {
             super(source, converter);
             this.comparator = comparator;
         }
@@ -1139,22 +1163,22 @@ public class Quicker {
      * spliterator is null, return an empty spliterator. If returned spliterator is sorted, its
      * {@linkplain Spliterator#getComparator()} will return null; else throw {@linkplain IllegalStateException}.
      * </p>
-     * 
+     *
      * @param <T>
-     *            component type of given spliterator
+     *         component type of given spliterator
      * @param <R>
-     *            component type of returned spliterator
+     *         component type of returned spliterator
      * @param spliterator
-     *            given spliterator
+     *         given spliterator
      * @param converter
-     *            given converter
+     *         given converter
      * @return an spliterator of which elements are converted from given spliterator and converter
      * @throws NullPointerException
-     *             if given converter is null when it is needed
+     *         if given converter is null when it is needed
      * @since 0.0.0
      */
     public static <T, R> Spliterator<R> spliterator(@Nullable Spliterator<? extends T> spliterator,
-            Function<? super T, ? extends R> converter) throws NullPointerException {
+                                                    Function<? super T, ? extends R> converter) throws NullPointerException {
         if (spliterator == null) {
             return Consts.emptySpliterator();
         }
@@ -1170,24 +1194,24 @@ public class Quicker {
      * spliterator is null, return an empty spliterator. Returned spliterator always returns given comparator by
      * {@linkplain Spliterator#getComparator()}.
      * </p>
-     * 
+     *
      * @param <T>
-     *            component type of given spliterator
+     *         component type of given spliterator
      * @param <R>
-     *            component type of returned spliterator
+     *         component type of returned spliterator
      * @param spliterator
-     *            given spliterator
+     *         given spliterator
      * @param converter
-     *            given converter
+     *         given converter
      * @param comparator
-     *            given comparator
+     *         given comparator
      * @return an spliterator of which elements are converted from given spliterator and converter
      * @throws NullPointerException
-     *             if given converter is null when it is needed
+     *         if given converter is null when it is needed
      * @since 0.0.0
      */
     public static <T, R> Spliterator<R> spliterator(@Nullable Spliterator<? extends T> spliterator,
-            Function<? super T, ? extends R> converter, @Nullable Comparator<? super R> comparator)
+                                                    Function<? super T, ? extends R> converter, @Nullable Comparator<? super R> comparator)
             throws NullPointerException {
         if (spliterator == null) {
             return Consts.emptySpliterator();
@@ -1200,11 +1224,11 @@ public class Quicker {
      * <p>
      * Returns a spliterator backed by given iterator. If given iterator is null, return an empty spliterator.
      * </p>
-     * 
+     *
      * @param <E>
-     *            component type
+     *         component type
      * @param iterator
-     *            given iterator
+     *         given iterator
      * @return a spliterator backed by given iterator
      * @since 0.0.0
      */
@@ -1217,11 +1241,11 @@ public class Quicker {
      * Returns a spliterator backed by given supplier. If given supplier is null, return an empty spliterator; else the
      * returned spliterator is endless.
      * </p>
-     * 
+     *
      * @param <E>
-     *            component type
+     *         component type
      * @param supplier
-     *            given supplier
+     *         given supplier
      * @return a spliterator backed by given supplier
      * @since 0.0.0
      */
@@ -1239,9 +1263,9 @@ public class Quicker {
      * spliterator's estimated size is sum of all, but if any one's estimated size is {@linkplain Long#MAX_VALUE},
      * returned spliterator's will be set {@linkplain Long#MAX_VALUE}.
      * </p>
-     * 
+     *
      * @param spliterators
-     *            given spliterators
+     *         given spliterators
      * @return spliterator combines given spliterators
      * @since 0.0.0
      */
@@ -1291,7 +1315,7 @@ public class Quicker {
             @SuppressWarnings("unchecked")
             public Spliterator<E> trySplit() {
                 Spliterator<E> split = null;
-                while (i < spliterators.length && (split = (Spliterator<E>)spliterators[i].trySplit()) != null) {
+                while (i < spliterators.length && (split = (Spliterator<E>) spliterators[i].trySplit()) != null) {
                     i++;
                 }
                 if (i == spliterators.length) {
@@ -1317,11 +1341,11 @@ public class Quicker {
      * Returns an spliterator of which elements are non-null elements from given spliterator. If given spliterator is
      * null, return an empty spliterator.
      * </p>
-     * 
+     *
      * @param <E>
-     *            component type
+     *         component type
      * @param spliterator
-     *            given spliterator
+     *         given spliterator
      * @return an spliterator of which elements are non-null elements from given spliterator
      * @since 0.0.0
      */
@@ -1336,11 +1360,11 @@ public class Quicker {
      * <p>
      * Returns a iterable backed by given array. If given array is null, return an empty iterable.
      * </p>
-     * 
+     *
      * @param <E>
-     *            component type
+     *         component type
      * @param array
-     *            given array
+     *         given array
      * @return a iterable backed by given array
      * @since 0.0.0
      */
@@ -1352,11 +1376,11 @@ public class Quicker {
      * <p>
      * Returns an iterable backed by given iterator. If given iterator is null, return an empty iterable.
      * </p>
-     * 
+     *
      * @param <E>
-     *            component type
+     *         component type
      * @param iterator
-     *            given iterator
+     *         given iterator
      * @return an iterable backed by given iterator
      * @since 0.0.0
      */
@@ -1368,11 +1392,11 @@ public class Quicker {
      * <p>
      * Returns an iterable backed by given spliterator. If given spliterator is null, return an empty iterable.
      * </p>
-     * 
+     *
      * @param <E>
-     *            component type
+     *         component type
      * @param spliterator
-     *            given spliterator
+     *         given spliterator
      * @return an iterable backed by given spliterator
      * @since 0.0.0
      */
@@ -1385,18 +1409,18 @@ public class Quicker {
      * Returns an iterable of which elements are backed and converted from given iterable and converter. If given
      * iterable is null, return an empty iterable.
      * </p>
-     * 
+     *
      * @param <T>
-     *            component type of given iterable
+     *         component type of given iterable
      * @param <R>
-     *            component type of returned iterable
+     *         component type of returned iterable
      * @param iterable
-     *            given iterable
+     *         given iterable
      * @return an iterable of which elements are converted from given iterable and converter
      * @since 0.0.0
      */
     public static <T, R> Iterable<R> iterable(@Nullable Iterable<? extends T> iterable,
-            @Nullable Function<? super T, ? extends R> converter) {
+                                              @Nullable Function<? super T, ? extends R> converter) {
         if (iterable == null) {
             return Consts.emptyIterable();
         }
@@ -1408,11 +1432,11 @@ public class Quicker {
      * <p>
      * Returns a stream backed by given array. If given array is null, return an empty stream.
      * </p>
-     * 
+     *
      * @param <E>
-     *            component type
+     *         component type
      * @param array
-     *            given array
+     *         given array
      * @return a stream backed by given array
      * @since 0.0.0
      */
@@ -1424,11 +1448,11 @@ public class Quicker {
      * <p>
      * Returns a stream backed by given iterator. If given iterator is null, return an empty stream.
      * </p>
-     * 
+     *
      * @param <E>
-     *            component type
+     *         component type
      * @param iterator
-     *            given iterator
+     *         given iterator
      * @return a stream backed by given iterator
      * @since 0.0.0
      */
@@ -1440,11 +1464,11 @@ public class Quicker {
      * <p>
      * Returns a stream backed by given spliterator. If given spliterator is null, return an empty stream.
      * </p>
-     * 
+     *
      * @param <E>
-     *            component type
+     *         component type
      * @param spliterator
-     *            given spliterator
+     *         given spliterator
      * @return a stream backed by given spliterator
      * @since 0.0.0
      */
@@ -1457,18 +1481,18 @@ public class Quicker {
      * Returns an stream of which elements are backed and converted from given stream and converter. If given stream is
      * null, return an empty stream.
      * </p>
-     * 
+     *
      * @param <T>
-     *            component type of given stream
+     *         component type of given stream
      * @param <R>
-     *            component type of returned stream
+     *         component type of returned stream
      * @param stream
-     *            given stream
+     *         given stream
      * @return an stream of which elements are converted from given stream and converter
      * @since 0.0.0
      */
     public static <T, R> Stream<R> stream(@Nullable Stream<? extends T> stream,
-            @Nullable Function<? super T, ? extends R> converter) {
+                                          @Nullable Function<? super T, ? extends R> converter) {
         if (stream == null) {
             return Consts.emptyStream();
         }
@@ -1480,13 +1504,13 @@ public class Quicker {
      * <p>
      * Does action if given object and action are not null.
      * </p>
-     * 
+     *
      * @param <T>
-     *            type of given object
+     *         type of given object
      * @param obj
-     *            given object
+     *         given object
      * @param action
-     *            given action
+     *         given action
      * @since 0.0.0
      */
     public static <T> void doIfNonnull(@Nullable T obj, @Nullable Consumer<? super T> action) {
@@ -1499,16 +1523,16 @@ public class Quicker {
      * <p>
      * Returns a matcher with given regular expression and string to be matched.
      * </p>
-     * 
+     *
      * @param regex
-     *            given regular expression
+     *         given regular expression
      * @param matched
-     *            given string to be matched
+     *         given string to be matched
      * @return a matcher matched by given regular expression and string
      * @throws NullPointerException
-     *             if given pattern or string is null
+     *         if given pattern or string is null
      * @throws PatternSyntaxException
-     *             if given pattern's syntax is invalid
+     *         if given pattern's syntax is invalid
      * @since 0.0.0
      */
     public static Matcher match(String regex, String matched) throws NullPointerException, PatternSyntaxException {
@@ -1519,14 +1543,14 @@ public class Quicker {
      * <p>
      * Returns a matcher with given pattern and string to be matched.
      * </p>
-     * 
+     *
      * @param pattern
-     *            given pattern
+     *         given pattern
      * @param matched
-     *            given string to be matched
+     *         given string to be matched
      * @return a matcher matched by given pattern and string
      * @throws NullPointerException
-     *             if given pattern or string is null
+     *         if given pattern or string is null
      * @since 0.0.0
      */
     public static Matcher match(Pattern pattern, String matched) throws NullPointerException {
@@ -1537,16 +1561,16 @@ public class Quicker {
      * <p>
      * Returns whether given string can be completely-matched (all characters) by given regular expression.
      * </p>
-     * 
+     *
      * @param regex
-     *            given regular expression
+     *         given regular expression
      * @param matched
-     *            given string to be matched
+     *         given string to be matched
      * @return whether given string can be completely-matched (all characters) by given regular expression
      * @throws NullPointerException
-     *             if given pattern or string is null
+     *         if given pattern or string is null
      * @throws PatternSyntaxException
-     *             if given pattern's syntax is invalid
+     *         if given pattern's syntax is invalid
      * @since 0.0.0
      */
     public static boolean completelyMatch(String regex, String matched)
@@ -1558,14 +1582,14 @@ public class Quicker {
      * <p>
      * Returns whether given string can be completely-matched (all characters) by given pattern.
      * </p>
-     * 
+     *
      * @param pattern
-     *            given pattern
+     *         given pattern
      * @param matched
-     *            given string to be matched
+     *         given string to be matched
      * @return whether whole given string can be completely-matched by given pattern
      * @throws NullPointerException
-     *             if given pattern or string is null
+     *         if given pattern or string is null
      * @since 0.0.0
      */
     public static boolean completelyMatch(Pattern pattern, String matched) throws NullPointerException {
@@ -1581,12 +1605,12 @@ public class Quicker {
      * Makes current thread sleep in given milliseconds. The sleeping can be interrupted by an
      * {@linkplain InterruptedException}. The actual sleeping milliseconds will be returned.
      * </p>
-     * 
+     *
      * @param millis
-     *            given milliseconds
+     *         given milliseconds
      * @return actual sleeping milliseconds
      * @throws IllegalArgumentException
-     *             if given milliseconds is negative
+     *         if given milliseconds is negative
      * @since 0.0.0
      */
     public static long sleep(@Nonnegative long millis) throws IllegalArgumentException {
@@ -1604,11 +1628,11 @@ public class Quicker {
      * Forcibly makes current thread sleep in given milliseconds. The sleeping can <b>not</b> be interrupted by an
      * {@linkplain InterruptedException}. It will be sleeping until time up.
      * </p>
-     * 
+     *
      * @param millis
-     *            given milliseconds
+     *         given milliseconds
      * @throws IllegalArgumentException
-     *             if given milliseconds is negative
+     *         if given milliseconds is negative
      * @since 0.0.0
      */
     public static void sleepForcibly(@Nonnegative long millis) throws IllegalArgumentException {
@@ -1628,13 +1652,13 @@ public class Quicker {
      * Performs given action for each element of given array in index order. The actual number of performed times will
      * be returned.
      * </p>
-     * 
+     *
      * @param <E>
-     *            component type of given array
+     *         component type of given array
      * @param array
-     *            given array
+     *         given array
      * @param action
-     *            given action
+     *         given action
      * @return actual number of performed times
      * @since 0.0.0
      */
@@ -1651,13 +1675,13 @@ public class Quicker {
      * Performs given action for each element of given array in index order. The actual number of performed times will
      * be returned.
      * </p>
-     * 
+     *
      * @param <E>
-     *            component type of given array
+     *         component type of given array
      * @param array
-     *            given array
+     *         given array
      * @param action
-     *            given action
+     *         given action
      * @return actual number of performed times
      * @since 0.0.0
      */
@@ -1677,13 +1701,13 @@ public class Quicker {
      * Performs given action for each element of given iterator in encounter order. The actual number of performed times
      * will be returned.
      * </p>
-     * 
+     *
      * @param <E>
-     *            component type of given iterator
+     *         component type of given iterator
      * @param iterator
-     *            given iterator
+     *         given iterator
      * @param action
-     *            given action
+     *         given action
      * @return actual number of performed times
      * @since 0.0.0
      */
@@ -1699,13 +1723,13 @@ public class Quicker {
      * Performs given action for each element of given iterator in encounter order. The actual number of performed times
      * will be returned.
      * </p>
-     * 
+     *
      * @param <E>
-     *            component type of given iterator
+     *         component type of given iterator
      * @param iterator
-     *            given iterator
+     *         given iterator
      * @param action
-     *            given action
+     *         given action
      * @return actual number of performed times
      * @since 0.0.0
      */
@@ -1721,13 +1745,13 @@ public class Quicker {
      * Performs given action for each element of given spliterator in encounter order. The actual number of performed
      * times will be returned.
      * </p>
-     * 
+     *
      * @param <E>
-     *            component type of given spliterator
+     *         component type of given spliterator
      * @param spliterator
-     *            given spliterator
+     *         given spliterator
      * @param action
-     *            given action
+     *         given action
      * @return actual number of performed times
      * @since 0.0.0
      */
@@ -1743,18 +1767,18 @@ public class Quicker {
      * Performs given action for each element of given spliterator in encounter order. The actual number of performed
      * times will be returned.
      * </p>
-     * 
+     *
      * @param <E>
-     *            component type of given spliterator
+     *         component type of given spliterator
      * @param spliterator
-     *            given spliterator
+     *         given spliterator
      * @param action
-     *            given action
+     *         given action
      * @return actual number of performed times
      * @since 0.0.0
      */
     public static <E> long each(@Nullable Spliterator<? extends E> spliterator,
-            @Nullable EachConsumer<? super E> action) {
+                                @Nullable EachConsumer<? super E> action) {
         if (spliterator == null || action == null) {
             return 0;
         }
@@ -1766,13 +1790,13 @@ public class Quicker {
      * Performs given action for each element of given iterable in encounter order. The actual number of performed times
      * will be returned.
      * </p>
-     * 
+     *
      * @param <E>
-     *            component type of given iterable
+     *         component type of given iterable
      * @param iterable
-     *            given iterable
+     *         given iterable
      * @param action
-     *            given action
+     *         given action
      * @return actual number of performed times
      * @since 0.0.0
      */
@@ -1788,13 +1812,13 @@ public class Quicker {
      * Performs given action for each element of given iterable in encounter order. The actual number of performed times
      * will be returned.
      * </p>
-     * 
+     *
      * @param <E>
-     *            component type of given iterable
+     *         component type of given iterable
      * @param iterable
-     *            given iterable
+     *         given iterable
      * @param action
-     *            given action
+     *         given action
      * @return actual number of performed times
      * @since 0.0.0
      */
@@ -1810,13 +1834,13 @@ public class Quicker {
      * Performs given action for each element of given stream in encounter order. The actual number of performed times
      * will be returned.
      * </p>
-     * 
+     *
      * @param <E>
-     *            component type of given stream
+     *         component type of given stream
      * @param stream
-     *            given stream
+     *         given stream
      * @param action
-     *            given action
+     *         given action
      * @return actual number of performed times
      * @since 0.0.0
      */
@@ -1837,13 +1861,13 @@ public class Quicker {
      * Performs given action for each element of given stream in encounter order. The actual number of performed times
      * will be returned.
      * </p>
-     * 
+     *
      * @param <E>
-     *            component type of given stream
+     *         component type of given stream
      * @param stream
-     *            given stream
+     *         given stream
      * @param action
-     *            given action
+     *         given action
      * @return actual number of performed times
      * @since 0.0.0
      */
@@ -1864,15 +1888,15 @@ public class Quicker {
      * Performs given action for each entry of given map in encounter order. The actual number of performed times will
      * be returned.
      * </p>
-     * 
+     *
      * @param <K>
-     *            type of map keys
+     *         type of map keys
      * @param <K>
-     *            type of map values
+     *         type of map values
      * @param map
-     *            given map
+     *         given map
      * @param action
-     *            given action
+     *         given action
      * @return actual number of performed times
      * @since 0.0.0
      */
@@ -1889,15 +1913,15 @@ public class Quicker {
      * Performs given action for each entry of given map in encounter order. The actual number of performed times will
      * be returned.
      * </p>
-     * 
+     *
      * @param <K>
-     *            type of map keys
+     *         type of map keys
      * @param <K>
-     *            type of map values
+     *         type of map values
      * @param map
-     *            given map
+     *         given map
      * @param action
-     *            given action
+     *         given action
      * @return actual number of performed times
      * @since 0.0.0
      */
@@ -1918,13 +1942,13 @@ public class Quicker {
      * If given array or predication is null, or predication returns true for all elements, a not-found result will be
      * returned.
      * </p>
-     * 
+     *
      * @param <E>
-     *            component type of given array
+     *         component type of given array
      * @param array
-     *            given array
+     *         given array
      * @param predication
-     *            given predication
+     *         given predication
      * @return result contains current element and its index
      * @since 0.0.0
      */
@@ -1949,13 +1973,13 @@ public class Quicker {
      * If given array or predication is null, or predication returns true for all elements, a not-found result will be
      * returned.
      * </p>
-     * 
+     *
      * @param <E>
-     *            component type of given array
+     *         component type of given array
      * @param array
-     *            given array
+     *         given array
      * @param predication
-     *            given predication
+     *         given predication
      * @return result contains current element and its index
      * @since 0.0.0
      */
@@ -1978,18 +2002,18 @@ public class Quicker {
      * If given iterator or predication is null, or predication returns true for all elements, a not-found result will
      * be returned.
      * </p>
-     * 
+     *
      * @param <E>
-     *            component type of given iterator
+     *         component type of given iterator
      * @param iterator
-     *            given iterator
+     *         given iterator
      * @param predication
-     *            given predication
+     *         given predication
      * @return result contains current element and its index
      * @since 0.0.0
      */
     public static <E> EachResult<E> each(@Nullable Iterator<? extends E> iterator,
-            @Nullable Predicate<? super E> predication) {
+                                         @Nullable Predicate<? super E> predication) {
         if (iterator == null || predication == null) {
             return EachResult.notFound();
         }
@@ -2013,18 +2037,18 @@ public class Quicker {
      * If given iterator or predication is null, or predication returns true for all elements, a not-found result will
      * be returned.
      * </p>
-     * 
+     *
      * @param <E>
-     *            component type of given iterator
+     *         component type of given iterator
      * @param iterator
-     *            given iterator
+     *         given iterator
      * @param predication
-     *            given predication
+     *         given predication
      * @return result contains current element and its index
      * @since 0.0.0
      */
     public static <E> EachResult<E> each(@Nullable Iterator<? extends E> iterator,
-            @Nullable EachPredicate<? super E> predication) {
+                                         @Nullable EachPredicate<? super E> predication) {
         if (iterator == null || predication == null) {
             return EachResult.notFound();
         }
@@ -2043,18 +2067,18 @@ public class Quicker {
      * If given spliterator or predication is null, or predication returns true for all elements, a not-found result
      * will be returned.
      * </p>
-     * 
+     *
      * @param <E>
-     *            component type of given spliterator
+     *         component type of given spliterator
      * @param spliterator
-     *            given spliterator
+     *         given spliterator
      * @param predication
-     *            given predication
+     *         given predication
      * @return result contains current element and its index
      * @since 0.0.0
      */
     public static <E> EachResult<E> each(@Nullable Spliterator<? extends E> spliterator,
-            @Nullable Predicate<? super E> predication) {
+                                         @Nullable Predicate<? super E> predication) {
         if (spliterator == null || predication == null) {
             return EachResult.notFound();
         }
@@ -2070,18 +2094,18 @@ public class Quicker {
      * If given spliterator or predication is null, or predication returns true for all elements, a not-found result
      * will be returned.
      * </p>
-     * 
+     *
      * @param <E>
-     *            component type of given spliterator
+     *         component type of given spliterator
      * @param spliterator
-     *            given spliterator
+     *         given spliterator
      * @param predication
-     *            given predication
+     *         given predication
      * @return result contains current element and its index
      * @since 0.0.0
      */
     public static <E> EachResult<E> each(@Nullable Spliterator<? extends E> spliterator,
-            @Nullable EachPredicate<? super E> predication) {
+                                         @Nullable EachPredicate<? super E> predication) {
         if (spliterator == null || predication == null) {
             return EachResult.notFound();
         }
@@ -2100,18 +2124,18 @@ public class Quicker {
      * If given iterable or predication is null, or predication returns true for all elements, a not-found result will
      * be returned.
      * </p>
-     * 
+     *
      * @param <E>
-     *            component type of given iterable
+     *         component type of given iterable
      * @param iterable
-     *            given iterable
+     *         given iterable
      * @param predication
-     *            given predication
+     *         given predication
      * @return result contains current element and its index
      * @since 0.0.0
      */
     public static <E> EachResult<E> each(@Nullable Iterable<? extends E> iterable,
-            @Nullable Predicate<? super E> predication) {
+                                         @Nullable Predicate<? super E> predication) {
         if (iterable == null || predication == null) {
             return EachResult.notFound();
         }
@@ -2127,18 +2151,18 @@ public class Quicker {
      * If given iterable or predication is null, or predication returns true for all elements, a not-found result will
      * be returned.
      * </p>
-     * 
+     *
      * @param <E>
-     *            component type of given iterable
+     *         component type of given iterable
      * @param iterable
-     *            given iterable
+     *         given iterable
      * @param predication
-     *            given predication
+     *         given predication
      * @return result contains current element and its index
      * @since 0.0.0
      */
     public static <E> EachResult<E> each(@Nullable Iterable<? extends E> iterable,
-            @Nullable EachPredicate<? super E> predication) {
+                                         @Nullable EachPredicate<? super E> predication) {
         if (iterable == null || predication == null) {
             return EachResult.notFound();
         }
@@ -2157,18 +2181,18 @@ public class Quicker {
      * If given stream or predication is null, or predication returns true for all elements, a not-found result will be
      * returned.
      * </p>
-     * 
+     *
      * @param <E>
-     *            component type of given stream
+     *         component type of given stream
      * @param stream
-     *            given stream
+     *         given stream
      * @param predication
-     *            given predication
+     *         given predication
      * @return result contains current element and its index
      * @since 0.0.0
      */
     public static <E> EachResult<E> each(@Nullable Stream<? extends E> stream,
-            @Nullable Predicate<? super E> predication) {
+                                         @Nullable Predicate<? super E> predication) {
         if (stream == null || predication == null) {
             return EachResult.notFound();
         }
@@ -2184,18 +2208,18 @@ public class Quicker {
      * If given stream or predication is null, or predication returns true for all elements, a not-found result will be
      * returned.
      * </p>
-     * 
+     *
      * @param <E>
-     *            component type of given stream
+     *         component type of given stream
      * @param stream
-     *            given stream
+     *         given stream
      * @param predication
-     *            given predication
+     *         given predication
      * @return result contains current element and its index
      * @since 0.0.0
      */
     public static <E> EachResult<E> each(@Nullable Stream<? extends E> stream,
-            @Nullable EachPredicate<? super E> predication) {
+                                         @Nullable EachPredicate<? super E> predication) {
         if (stream == null || predication == null) {
             return EachResult.notFound();
         }
@@ -2214,20 +2238,20 @@ public class Quicker {
      * If given map or predication is null, or predication returns true for all entries, a not-found result will be
      * returned.
      * </p>
-     * 
+     *
      * @param <K>
-     *            type of map keys
+     *         type of map keys
      * @param <K>
-     *            type of map values
+     *         type of map values
      * @param map
-     *            given map
+     *         given map
      * @param predication
-     *            given predication
+     *         given predication
      * @return result contains current entry and its index
      * @since 0.0.0
      */
     public static <K, V> EachResult<Entry<K, V>> each(@Nullable Map<K, V> map,
-            @Nullable Predicate<? super Entry<K, V>> predication) {
+                                                      @Nullable Predicate<? super Entry<K, V>> predication) {
         if (map == null || predication == null) {
             return EachResult.notFound();
         }
@@ -2243,20 +2267,20 @@ public class Quicker {
      * If given map or predication is null, or predication returns true for all entries, a not-found result will be
      * returned.
      * </p>
-     * 
+     *
      * @param <K>
-     *            type of map keys
+     *         type of map keys
      * @param <K>
-     *            type of map values
+     *         type of map values
      * @param map
-     *            given map
+     *         given map
      * @param predication
-     *            given predication
+     *         given predication
      * @return result contains current entry and its index
      * @since 0.0.0
      */
     public static <K, V> EachResult<Entry<K, V>> each(@Nullable Map<K, V> map,
-            @Nullable EachPredicate<? super Entry<K, V>> predication) {
+                                                      @Nullable EachPredicate<? super Entry<K, V>> predication) {
         if (map == null || predication == null) {
             return EachResult.notFound();
         }
@@ -2275,13 +2299,13 @@ public class Quicker {
      * If given array or predication is null, or predication returns true for all elements, a not-found result will be
      * returned.
      * </p>
-     * 
+     *
      * @param <E>
-     *            component type of given array
+     *         component type of given array
      * @param array
-     *            given array
+     *         given array
      * @param predication
-     *            given predication
+     *         given predication
      * @return result contains current element and its index
      * @since 0.0.0
      */
@@ -2301,13 +2325,13 @@ public class Quicker {
      * If given array or predication is null, or predication returns true for all elements, a not-found result will be
      * returned.
      * </p>
-     * 
+     *
      * @param <E>
-     *            component type of given array
+     *         component type of given array
      * @param array
-     *            given array
+     *         given array
      * @param predication
-     *            given predication
+     *         given predication
      * @return result contains current element and its index
      * @since 0.0.0
      */
@@ -2327,18 +2351,18 @@ public class Quicker {
      * If given iterator or predication is null, or predication returns false for all elements, a not-found result will
      * be returned.
      * </p>
-     * 
+     *
      * @param <E>
-     *            component type of given iterator
+     *         component type of given iterator
      * @param iterator
-     *            given iterator
+     *         given iterator
      * @param predication
-     *            given predication
+     *         given predication
      * @return result contains current element and its index
      * @since 0.0.0
      */
     public static <E> EachResult<E> search(@Nullable Iterator<? extends E> iterator,
-            @Nullable Predicate<? super E> predication) {
+                                           @Nullable Predicate<? super E> predication) {
         if (iterator == null || predication == null) {
             return EachResult.notFound();
         }
@@ -2354,18 +2378,18 @@ public class Quicker {
      * If given iterator or predication is null, or predication returns false for all elements, a not-found result will
      * be returned.
      * </p>
-     * 
+     *
      * @param <E>
-     *            component type of given iterator
+     *         component type of given iterator
      * @param iterator
-     *            given iterator
+     *         given iterator
      * @param predication
-     *            given predication
+     *         given predication
      * @return result contains current element and its index
      * @since 0.0.0
      */
     public static <E> EachResult<E> search(@Nullable Iterator<? extends E> iterator,
-            @Nullable EachPredicate<? super E> predication) {
+                                           @Nullable EachPredicate<? super E> predication) {
         if (iterator == null || predication == null) {
             return EachResult.notFound();
         }
@@ -2381,18 +2405,18 @@ public class Quicker {
      * If given spliterator or predication is null, or predication returns false for all elements, a not-found result
      * will be returned.
      * </p>
-     * 
+     *
      * @param <E>
-     *            component type of given spliterator
+     *         component type of given spliterator
      * @param spliterator
-     *            given spliterator
+     *         given spliterator
      * @param predication
-     *            given predication
+     *         given predication
      * @return result contains current element and its index
      * @since 0.0.0
      */
     public static <E> EachResult<E> search(@Nullable Spliterator<? extends E> spliterator,
-            @Nullable Predicate<? super E> predication) {
+                                           @Nullable Predicate<? super E> predication) {
         if (spliterator == null || predication == null) {
             return EachResult.notFound();
         }
@@ -2408,18 +2432,18 @@ public class Quicker {
      * If given spliterator or predication is null, or predication returns false for all elements, a not-found result
      * will be returned.
      * </p>
-     * 
+     *
      * @param <E>
-     *            component type of given spliterator
+     *         component type of given spliterator
      * @param spliterator
-     *            given spliterator
+     *         given spliterator
      * @param predication
-     *            given predication
+     *         given predication
      * @return result contains current element and its index
      * @since 0.0.0
      */
     public static <E> EachResult<E> search(@Nullable Spliterator<? extends E> spliterator,
-            @Nullable EachPredicate<? super E> predication) {
+                                           @Nullable EachPredicate<? super E> predication) {
         if (spliterator == null || predication == null) {
             return EachResult.notFound();
         }
@@ -2435,18 +2459,18 @@ public class Quicker {
      * If given iterable or predication is null, or predication returns false for all elements, a not-found result will
      * be returned.
      * </p>
-     * 
+     *
      * @param <E>
-     *            component type of given iterable
+     *         component type of given iterable
      * @param iterable
-     *            given iterable
+     *         given iterable
      * @param predication
-     *            given predication
+     *         given predication
      * @return result contains current element and its index
      * @since 0.0.0
      */
     public static <E> EachResult<E> search(@Nullable Iterable<? extends E> iterable,
-            @Nullable Predicate<? super E> predication) {
+                                           @Nullable Predicate<? super E> predication) {
         if (iterable == null || predication == null) {
             return EachResult.notFound();
         }
@@ -2462,18 +2486,18 @@ public class Quicker {
      * If given iterable or predication is null, or predication returns false for all elements, a not-found result will
      * be returned.
      * </p>
-     * 
+     *
      * @param <E>
-     *            component type of given iterable
+     *         component type of given iterable
      * @param iterable
-     *            given iterable
+     *         given iterable
      * @param predication
-     *            given predication
+     *         given predication
      * @return result contains current element and its index
      * @since 0.0.0
      */
     public static <E> EachResult<E> search(@Nullable Iterable<? extends E> iterable,
-            @Nullable EachPredicate<? super E> predication) {
+                                           @Nullable EachPredicate<? super E> predication) {
         if (iterable == null || predication == null) {
             return EachResult.notFound();
         }
@@ -2489,18 +2513,18 @@ public class Quicker {
      * If given stream or predication is null, or predication returns false for all elements, a not-found result will be
      * returned.
      * </p>
-     * 
+     *
      * @param <E>
-     *            component type of given stream
+     *         component type of given stream
      * @param stream
-     *            given stream
+     *         given stream
      * @param predication
-     *            given predication
+     *         given predication
      * @return result contains current element and its index
      * @since 0.0.0
      */
     public static <E> EachResult<E> search(@Nullable Stream<? extends E> stream,
-            @Nullable Predicate<? super E> predication) {
+                                           @Nullable Predicate<? super E> predication) {
         if (stream == null || predication == null) {
             return EachResult.notFound();
         }
@@ -2516,18 +2540,18 @@ public class Quicker {
      * If given stream or predication is null, or predication returns false for all elements, a not-found result will be
      * returned.
      * </p>
-     * 
+     *
      * @param <E>
-     *            component type of given stream
+     *         component type of given stream
      * @param stream
-     *            given stream
+     *         given stream
      * @param predication
-     *            given predication
+     *         given predication
      * @return result contains current element and its index
      * @since 0.0.0
      */
     public static <E> EachResult<E> search(@Nullable Stream<? extends E> stream,
-            @Nullable EachPredicate<? super E> predication) {
+                                           @Nullable EachPredicate<? super E> predication) {
         if (stream == null || predication == null) {
             return EachResult.notFound();
         }
@@ -2543,20 +2567,20 @@ public class Quicker {
      * If given map or predication is null, or predication returns true for all entries, a not-found result will be
      * returned.
      * </p>
-     * 
+     *
      * @param <K>
-     *            type of map keys
+     *         type of map keys
      * @param <K>
-     *            type of map values
+     *         type of map values
      * @param map
-     *            given map
+     *         given map
      * @param predication
-     *            given predication
+     *         given predication
      * @return result contains current entry and its index
      * @since 0.0.0
      */
     public static <K, V> EachResult<Entry<K, V>> search(@Nullable Map<K, V> map,
-            @Nullable Predicate<? super Entry<K, V>> predication) {
+                                                        @Nullable Predicate<? super Entry<K, V>> predication) {
         if (map == null || predication == null) {
             return EachResult.notFound();
         }
@@ -2572,20 +2596,20 @@ public class Quicker {
      * If given map or predication is null, or predication returns true for all entries, a not-found result will be
      * returned.
      * </p>
-     * 
+     *
      * @param <K>
-     *            type of map keys
+     *         type of map keys
      * @param <K>
-     *            type of map values
+     *         type of map values
      * @param map
-     *            given map
+     *         given map
      * @param predication
-     *            given predication
+     *         given predication
      * @return result contains current entry and its index
      * @since 0.0.0
      */
     public static <K, V> EachResult<Entry<K, V>> search(@Nullable Map<K, V> map,
-            @Nullable EachPredicate<? super Entry<K, V>> predication) {
+                                                        @Nullable EachPredicate<? super Entry<K, V>> predication) {
         if (map == null || predication == null) {
             return EachResult.notFound();
         }
@@ -2597,18 +2621,18 @@ public class Quicker {
      * Loop performs given action specified times. If the number of times is negative, the action will be performed
      * infinitely.
      * </p>
-     * 
+     *
      * @param times
-     *            number of specified times
+     *         number of specified times
      * @param action
-     *            given action
+     *         given action
      * @since 0.0.0
      */
     public static void each(long times, @Nullable Action action) {
         if (times == 0 || action == null) {
             return;
         }
-        Stream<Object> stream = Stream.generate(() -> (Object)null);
+        Stream<Object> stream = Stream.generate(() -> (Object) null);
         if (times < 0) {
             stream.forEachOrdered(e -> action.perform());
         } else {
@@ -2621,11 +2645,11 @@ public class Quicker {
      * Loop performs given action specified times. If the number of times is negative, the action will be performed
      * infinitely.
      * </p>
-     * 
+     *
      * @param times
-     *            number of specified times
+     *         number of specified times
      * @param action
-     *            given action
+     *         given action
      * @since 0.0.0
      */
     public static void each(long times, @Nullable EachAction action) {
@@ -2633,7 +2657,7 @@ public class Quicker {
             return;
         }
         long[] count = {0};
-        Stream<Object> stream = Stream.generate(() -> (Object)null);
+        Stream<Object> stream = Stream.generate(() -> (Object) null);
         if (times < 0) {
             stream.forEachOrdered(e -> action.perform(count[0]++));
         } else {
@@ -2649,11 +2673,11 @@ public class Quicker {
      * <p>
      * If the number of times is negative, the action will try to perform infinitely till it returns false.
      * </p>
-     * 
+     *
      * @param times
-     *            number of specified times
+     *         number of specified times
      * @param action
-     *            given action
+     *         given action
      * @return actual performance times
      * @since 0.0.0
      */
@@ -2671,11 +2695,11 @@ public class Quicker {
      * <p>
      * If the number of times is negative, the action will try to perform infinitely till it returns false.
      * </p>
-     * 
+     *
      * @param times
-     *            number of specified times
+     *         number of specified times
      * @param action
-     *            given action
+     *         given action
      * @return actual performance times
      * @since 0.0.0
      */
@@ -2707,8 +2731,7 @@ public class Quicker {
      * </p>
      *
      * @param <E>
-     *            type of result object
-     * 
+     *         type of result object
      * @author Fred Suvn
      * @version 0.0.0, 2016-06-15T12:58:14+08:00
      * @since 0.0.0, 2016-06-15T12:58:14+08:00
@@ -2722,13 +2745,13 @@ public class Quicker {
          * <p>
          * Returns a not-found result.
          * </p>
-         * 
+         *
          * @return a not-found result
          * @since 0.0.0
          */
         public static <E> EachResult<E> notFound() {
             @SuppressWarnings("unchecked")
-            EachResult<E> result = (EachResult<E>)NOT_FOUND;
+            EachResult<E> result = (EachResult<E>) NOT_FOUND;
             return result;
         }
 
@@ -2747,7 +2770,7 @@ public class Quicker {
          * Returns index of this result. If returned index is {@linkplain Uniforms#INVALID_CODE}, it means there is no
          * result found.
          * </p>
-         * 
+         *
          * @return index of this result
          * @since 0.0.0
          */
@@ -2761,16 +2784,18 @@ public class Quicker {
          * {@linkplain Integer#MAX_VALUE}. If returned index is {@linkplain Uniforms#INVALID_CODE}, it means there is no
          * result found.
          * </p>
-         * 
+         *
          * @return index of this result as int
          * @since 0.0.0
          */
         public int getIndexAsInt() {
-            return index > Integer.MAX_VALUE ? Integer.MAX_VALUE : (int)index;
+            return index > Integer.MAX_VALUE ? Integer.MAX_VALUE : (int) index;
         }
 
         @Override
-        public @Nullable E getValue() {
+        public
+        @Nullable
+        E getValue() {
             return value;
         }
 
@@ -2779,7 +2804,7 @@ public class Quicker {
          * Returns whether this result represents a valid result. True means this is a valid result, or false means the
          * result is not found.
          * </p>
-         * 
+         *
          * @return whether this result represents a valid result
          * @since 0.0.0
          */
@@ -2792,9 +2817,9 @@ public class Quicker {
      * <p>
      * Traverse and returns count of all elements of given iterator. Given iterator will be used up after traversing.
      * </p>
-     * 
+     *
      * @param iterator
-     *            given iterator
+     *         given iterator
      * @return count of all elements of given iterator
      * @since 0.0.0
      */
@@ -2807,9 +2832,9 @@ public class Quicker {
      * Traverse and returns count of all elements of given spliterator. Given spliterator will be used up after
      * traversing.
      * </p>
-     * 
+     *
      * @param spliterator
-     *            given spliterator
+     *         given spliterator
      * @return count of all elements of given spliterator
      * @since 0.0.0
      */
@@ -2821,17 +2846,17 @@ public class Quicker {
      * <p>
      * Counts and returns number of portions divided in {@code portion}. If {@code total} is not multiple of
      * {@code portion}, the remainder will be seeing as an extra one portion and added in returned value:
-     * 
+     * <p>
      * <pre>
      * return total % portion == 0 ? total / portion : total / portion + 1;
      * </pre>
-     * 
+     * <p>
      * </p>
-     * 
+     *
      * @param total
-     *            total value
+     *         total value
      * @param portion
-     *            value of each portion
+     *         value of each portion
      * @return number of portions divided in {@code portion}
      * @since 0.0.0
      */
@@ -2843,17 +2868,17 @@ public class Quicker {
      * <p>
      * Counts and returns number of portions divided in {@code portion}. If {@code total} is not multiple of
      * {@code portion}, the remainder will be seeing as an extra one portion and added in returned value:
-     * 
+     * <p>
      * <pre>
      * return total % portion == 0 ? total / portion : total / portion + 1;
      * </pre>
-     * 
+     * <p>
      * </p>
-     * 
+     *
      * @param total
-     *            total value
+     *         total value
      * @param portion
-     *            value of each portion
+     *         value of each portion
      * @return number of portions divided in {@code portion}
      * @since 0.0.0
      */
@@ -2865,12 +2890,12 @@ public class Quicker {
      * <p>
      * Capitalizes initials of given string.
      * </p>
-     * 
+     *
      * @param str
-     *            given string
+     *         given string
      * @return string after capitalizing
      * @throws NullPointerException
-     *             if given string is null
+     *         if given string is null
      * @since 0.0.0
      */
     public static String capitalizeInitials(String str) throws NullPointerException {
@@ -2884,21 +2909,23 @@ public class Quicker {
     /**
      * <p>
      * String-izes input string, appending " as prefix and suffix. For example:
-     * 
+     * <p>
      * <pre>
      * Quicker.stringize("abc");
      * will return: "abc" (original is abc)
      * </pre>
-     * 
+     * <p>
      * If input string is null, return null.
      * </p>
-     * 
+     *
      * @param str
-     *            input string
+     *         input string
      * @return string-lized string
      * @since 0.0.0
      */
-    public static @Nullable String stringize(@Nullable String str) {
+    public static
+    @Nullable
+    String stringize(@Nullable String str) {
         return null == str ? str : "\"" + str + "\"";
     }
 
@@ -2906,12 +2933,12 @@ public class Quicker {
      * <p>
      * Returns a string of whitespace of specified length.
      * </p>
-     * 
+     *
      * @param length
-     *            specified length, >= 0
+     *         specified length, >= 0
      * @return a string of whitespace with specified length
      * @throws IllegalArgumentException
-     *             if length < 0
+     *         if length < 0
      * @since 0.0.0
      */
     public static String blankString(int length) throws IllegalArgumentException {
@@ -2927,7 +2954,7 @@ public class Quicker {
      * <p>
      * Left pad or truncate given string. If given string is null, it will be seen as an empty string; if given pad
      * string is null or empty, it will be seen as a string consists of a whitespace. For examples:
-     * 
+     * <p>
      * <pre>
      * Quicker.leftPad(null, 3, null)   = "   "
      * Quicker.leftPad("", 3, "z")      = "zzz"
@@ -2939,16 +2966,16 @@ public class Quicker {
      * Quicker.leftPad("bat", 5, "")    = "  bat"
      * </pre>
      * </p>
-     * 
+     *
      * @param str
-     *            given string
+     *         given string
      * @param length
-     *            given length of returned string, >= 0
+     *         given length of returned string, >= 0
      * @param padStr
-     *            pad string
+     *         pad string
      * @return string after padding or truncating
      * @throws IllegalArgumentException
-     *             if given length < 0
+     *         if given length < 0
      * @since 0.0.0
      */
     public static String leftPad(@Nullable String str, int length, @Nullable String padStr)
@@ -2980,7 +3007,7 @@ public class Quicker {
      * <p>
      * Right pad or truncate given string. If given string is null, it will be seen as an empty string; if given pad
      * string is null or empty, it will be seen as a string consists of a whitespace. For examples:
-     * 
+     * <p>
      * <pre>
      * Quicker.rightPad(null, 3, null)   = "   "
      * Quicker.rightPad("", 3, "z")      = "zzz"
@@ -2992,16 +3019,16 @@ public class Quicker {
      * Quicker.rightPad("bat", 5, "")    = "bat  "
      * </pre>
      * </p>
-     * 
+     *
      * @param str
-     *            given string
+     *         given string
      * @param length
-     *            given length of returned string, >= 0
+     *         given length of returned string, >= 0
      * @param padStr
-     *            pad string
+     *         pad string
      * @return string after padding or truncating
      * @throws IllegalArgumentException
-     *             if given length < 0
+     *         if given length < 0
      * @since 0.0.0
      */
     public static String rightPad(@Nullable String str, int length, @Nullable String padStr)
@@ -3032,16 +3059,16 @@ public class Quicker {
     /**
      * <p>
      * Returns given value if given value >= given lower limit; else returns the lower limit like:
-     * 
+     * <p>
      * <pre>
      * return value < least ? least : value;
      * </pre>
      * </p>
-     * 
+     *
      * @param value
-     *            given value
+     *         given value
      * @param least
-     *            lower limit
+     *         lower limit
      * @return value above given lower limit
      * @since 0.0.0
      */
@@ -3052,16 +3079,16 @@ public class Quicker {
     /**
      * <p>
      * Returns given value if given value >= given lower limit; else returns the lower limit like:
-     * 
+     * <p>
      * <pre>
      * return value < least ? least : value;
      * </pre>
      * </p>
-     * 
+     *
      * @param value
-     *            given value
+     *         given value
      * @param least
-     *            lower limit
+     *         lower limit
      * @return value above given lower limit
      * @since 0.0.0
      */
@@ -3072,16 +3099,16 @@ public class Quicker {
     /**
      * <p>
      * Returns given value if given value >= given lower limit; else returns the lower limit like:
-     * 
+     * <p>
      * <pre>
      * return value < least ? least : value;
      * </pre>
      * </p>
-     * 
+     *
      * @param value
-     *            given value
+     *         given value
      * @param least
-     *            lower limit
+     *         lower limit
      * @return value above given lower limit
      * @since 0.0.0
      */
@@ -3092,16 +3119,16 @@ public class Quicker {
     /**
      * <p>
      * Returns given value if given value >= given lower limit; else returns the lower limit like:
-     * 
+     * <p>
      * <pre>
      * return value < least ? least : value;
      * </pre>
      * </p>
-     * 
+     *
      * @param value
-     *            given value
+     *         given value
      * @param least
-     *            lower limit
+     *         lower limit
      * @return value above given lower limit
      * @since 0.0.0
      */
@@ -3112,16 +3139,16 @@ public class Quicker {
     /**
      * <p>
      * Returns given value if given value <= given upper limit; else returns the upper limit like:
-     * 
+     * <p>
      * <pre>
      * return value > most ? most : value;
      * </pre>
      * </p>
-     * 
+     *
      * @param value
-     *            given value
+     *         given value
      * @param most
-     *            upper limit
+     *         upper limit
      * @return value under given upper limit
      * @since 0.0.0
      */
@@ -3132,16 +3159,16 @@ public class Quicker {
     /**
      * <p>
      * Returns given value if given value <= given upper limit; else returns the upper limit like:
-     * 
+     * <p>
      * <pre>
      * return value > most ? most : value;
      * </pre>
      * </p>
-     * 
+     *
      * @param value
-     *            given value
+     *         given value
      * @param most
-     *            upper limit
+     *         upper limit
      * @return value under given upper limit
      * @since 0.0.0
      */
@@ -3152,16 +3179,16 @@ public class Quicker {
     /**
      * <p>
      * Returns given value if given value <= given upper limit; else returns the upper limit like:
-     * 
+     * <p>
      * <pre>
      * return value > most ? most : value;
      * </pre>
      * </p>
-     * 
+     *
      * @param value
-     *            given value
+     *         given value
      * @param most
-     *            upper limit
+     *         upper limit
      * @return value under given upper limit
      * @since 0.0.0
      */
@@ -3172,16 +3199,16 @@ public class Quicker {
     /**
      * <p>
      * Returns given value if given value <= given upper limit; else returns the upper limit like:
-     * 
+     * <p>
      * <pre>
      * return value > most ? most : value;
      * </pre>
      * </p>
-     * 
+     *
      * @param value
-     *            given value
+     *         given value
      * @param most
-     *            upper limit
+     *         upper limit
      * @return value under given upper limit
      * @since 0.0.0
      */
@@ -3192,18 +3219,18 @@ public class Quicker {
     /**
      * <p>
      * Returns given value if given value in given bounds; else returns the lower limit or upper limit like:
-     * 
+     * <p>
      * <pre>
      * return value < from ? from : (value > to ? to : value);
      * </pre>
      * </p>
-     * 
+     *
      * @param value
-     *            given value
+     *         given value
      * @param from
-     *            lower limit of given bounds, inclusive
+     *         lower limit of given bounds, inclusive
      * @param to
-     *            upper limit of given bounds, inclusive
+     *         upper limit of given bounds, inclusive
      * @return value in given bounds
      * @since 0.0.0
      */
@@ -3214,18 +3241,18 @@ public class Quicker {
     /**
      * <p>
      * Returns given value if given value in given bounds; else returns the lower limit or upper limit like:
-     * 
+     * <p>
      * <pre>
      * return value < from ? from : (value > to ? to : value);
      * </pre>
      * </p>
-     * 
+     *
      * @param value
-     *            given value
+     *         given value
      * @param from
-     *            lower limit of given bounds, inclusive
+     *         lower limit of given bounds, inclusive
      * @param to
-     *            upper limit of given bounds, inclusive
+     *         upper limit of given bounds, inclusive
      * @return value in given bounds
      * @since 0.0.0
      */
@@ -3236,18 +3263,18 @@ public class Quicker {
     /**
      * <p>
      * Returns given value if given value in given bounds; else returns the lower limit or upper limit like:
-     * 
+     * <p>
      * <pre>
      * return value < from ? from : (value > to ? to : value);
      * </pre>
      * </p>
-     * 
+     *
      * @param value
-     *            given value
+     *         given value
      * @param from
-     *            lower limit of given bounds, inclusive
+     *         lower limit of given bounds, inclusive
      * @param to
-     *            upper limit of given bounds, inclusive
+     *         upper limit of given bounds, inclusive
      * @return value in given bounds
      * @since 0.0.0
      */
@@ -3258,18 +3285,18 @@ public class Quicker {
     /**
      * <p>
      * Returns given value if given value in given bounds; else returns the lower limit or upper limit like:
-     * 
+     * <p>
      * <pre>
      * return value < from ? from : (value > to ? to : value);
      * </pre>
      * </p>
-     * 
+     *
      * @param value
-     *            given value
+     *         given value
      * @param from
-     *            lower limit of given bounds, inclusive
+     *         lower limit of given bounds, inclusive
      * @param to
-     *            upper limit of given bounds, inclusive
+     *         upper limit of given bounds, inclusive
      * @return value in given bounds
      * @since 0.0.0
      */
@@ -3280,7 +3307,7 @@ public class Quicker {
     /**
      * <p>
      * Returns a string consists of substring of specified remainder long from head and a ellipsis. For example:
-     * 
+     * <p>
      * <pre>
      * ellipsis("abcdefg", 3);
      * will return "abc..."
@@ -3290,14 +3317,14 @@ public class Quicker {
      * If given string is null, return "null". If length of given string is less than given remainder length, return
      * itself.
      * </p>
-     * 
+     *
      * @param str
-     *            given string
+     *         given string
      * @param remainder
-     *            given remainder length
+     *         given remainder length
      * @return a string consists of substring of specified remainder long from head and a ellipsis
      * @throws IllegalArgumentException
-     *             if given remainder length < 0
+     *         if given remainder length < 0
      * @since 0.0.0
      */
     public static String ellipsis(@Nullable String str, int remainder) throws IllegalArgumentException {
@@ -3314,7 +3341,7 @@ public class Quicker {
     /**
      * <p>
      * Returns a string consists of substring of 3 characters long from head and a ellipsis. For example:
-     * 
+     * <p>
      * <pre>
      * ellipsis("abcdefg");
      * will return "abc..."
@@ -3323,9 +3350,9 @@ public class Quicker {
      * <p>
      * If given string is null, return "null". If length of given string is less than 3, return itself.
      * </p>
-     * 
+     *
      * @param str
-     *            given string
+     *         given string
      * @return a string consists of substring of 3 characters long from head and a ellipsis
      * @since 0.0.0
      */
@@ -3339,7 +3366,7 @@ public class Quicker {
      * <p>
      * Scans string of a line of input from {@linkplain System#in}.
      * </p>
-     * 
+     *
      * @return a string scanned from {@linkplain System#in}
      * @since 0.0.0
      */
@@ -3352,12 +3379,12 @@ public class Quicker {
     /**
      * <p>
      * Returns user's curent work path, same as:
-     * 
+     * <p>
      * <pre>
      * System.getProperty("user.dir");
      * </pre>
      * </p>
-     * 
+     *
      * @return
      * @since 0.0.0
      */
@@ -3369,14 +3396,14 @@ public class Quicker {
      * <p>
      * Returns resource of current application by specified path, including class path.
      * </p>
-     * 
+     *
      * @param path
-     *            specified path, including class path
+     *         specified path, including class path
      * @return resource of current application
      * @throws NullPointerException
-     *             if specified path is null
+     *         if specified path is null
      * @throws ReadException
-     *             if any problem occurs when getting resource
+     *         if any problem occurs when getting resource
      * @since 0.0.0
      */
     public static URI getResource(String path) throws NullPointerException, ReadException {
@@ -3391,14 +3418,14 @@ public class Quicker {
     /**
      * <p>
      * Converts given object to boolean, same as:
-     * 
+     * <p>
      * <pre>
      * Boolean.parseBoolean(String.valueOf(obj));
      * </pre>
      * </p>
-     * 
+     *
      * @param obj
-     *            given object
+     *         given object
      * @return boolean value of given object
      * @since 0.0.0
      */
@@ -3409,17 +3436,17 @@ public class Quicker {
     /**
      * <p>
      * Converts given object to int, same as:
-     * 
+     * <p>
      * <pre>
      * Integer.parseInt(String.valueOf(obj));
      * </pre>
      * </p>
-     * 
+     *
      * @param obj
-     *            given object
+     *         given object
      * @return int value of given object
      * @throws NumberFormatException
-     *             if given object cannot be converted
+     *         if given object cannot be converted
      * @since 0.0.0
      */
     public static int toInt(Object obj) throws NumberFormatException {
@@ -3429,17 +3456,17 @@ public class Quicker {
     /**
      * <p>
      * Converts given object to float, same as:
-     * 
+     * <p>
      * <pre>
      * Float.parseFloat(String.valueOf(obj));
      * </pre>
      * </p>
-     * 
+     *
      * @param obj
-     *            given object
+     *         given object
      * @return float value of given object
      * @throws NumberFormatException
-     *             if given object cannot be converted
+     *         if given object cannot be converted
      * @since 0.0.0
      */
     public static float toFloat(Object obj) throws NumberFormatException {
@@ -3449,17 +3476,17 @@ public class Quicker {
     /**
      * <p>
      * Converts given object to long, same as:
-     * 
+     * <p>
      * <pre>
      * Long.parseLong(String.valueOf(obj));
      * </pre>
      * </p>
-     * 
+     *
      * @param obj
-     *            given object
+     *         given object
      * @return long value of given object
      * @throws NumberFormatException
-     *             if given object cannot be converted
+     *         if given object cannot be converted
      * @since 0.0.0
      */
     public static long toLong(Object obj) throws NumberFormatException {
@@ -3469,17 +3496,17 @@ public class Quicker {
     /**
      * <p>
      * Converts given object to double, same as:
-     * 
+     * <p>
      * <pre>
      * Double.parseDouble(String.valueOf(obj));
      * </pre>
      * </p>
-     * 
+     *
      * @param obj
-     *            given object
+     *         given object
      * @return double value of given object
      * @throws NumberFormatException
-     *             if given object cannot be converted
+     *         if given object cannot be converted
      * @since 0.0.0
      */
     public static double toDouble(Object obj) throws NumberFormatException {
@@ -3489,17 +3516,17 @@ public class Quicker {
     /**
      * <p>
      * Converts given object to BigInteger, same as:
-     * 
+     * <p>
      * <pre>
      * new BigInteger(String.valueOf(obj));
      * </pre>
      * </p>
-     * 
+     *
      * @param obj
-     *            given object
+     *         given object
      * @return BigInteger value of given object
      * @throws NumberFormatException
-     *             if given object cannot be converted
+     *         if given object cannot be converted
      * @since 0.0.0
      */
     public static BigInteger toBigInteger(Object obj) throws NumberFormatException {
@@ -3509,17 +3536,17 @@ public class Quicker {
     /**
      * <p>
      * Converts given object to BigDecimal, same as:
-     * 
+     * <p>
      * <pre>
      * new BigDecimal(String.valueOf(obj));
      * </pre>
      * </p>
-     * 
+     *
      * @param obj
-     *            given object
+     *         given object
      * @return BigDecimal value of given object
      * @throws NumberFormatException
-     *             if given object cannot be converted
+     *         if given object cannot be converted
      * @since 0.0.0
      */
     public static BigDecimal toBigDecimal(Object obj) throws NumberFormatException {
@@ -3530,7 +3557,7 @@ public class Quicker {
      * <p>
      * Empty constructor for some reflection framework which need at least an empty constructor.
      * </p>
-     * 
+     *
      * @since 0.0.0
      */
     public Quicker() {
