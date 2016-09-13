@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="mylib">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../java/mylib/quicker-0.0.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../java/mylib/jsr305-1.3.9.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../../java/mylib/jsr305-1.3.9.jar!/" />
+    </SOURCES>
+  </library>
+</component>
