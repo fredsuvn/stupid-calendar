@@ -1,4 +1,4 @@
-package com.example.myapplication
+package xyz.sunqian.miniapp.olmicalendar
 
 import org.junit.Test
 

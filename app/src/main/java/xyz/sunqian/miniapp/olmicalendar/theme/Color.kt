@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.theme
+package xyz.sunqian.miniapp.olmicalendar.theme
 
 import androidx.compose.ui.graphics.Color
 

@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.myapplication"
+    namespace = "xyz.sunqian.miniapp.olmicalendar"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.myapplication"
+        applicationId = "xyz.sunqian.miniapp.olmicalendar"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
