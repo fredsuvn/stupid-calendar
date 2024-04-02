@@ -1,4 +1,3 @@
-= Stupid-IDEA
-Hello, GitHub!
+= Stupid Calendar
 
-Hello, My2016!
+Hello, Stupid Calendar
