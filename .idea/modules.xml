@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Quicker/Quicker.iml" filepath="$PROJECT_DIR$/Quicker/Quicker.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Stupid-IDEA.iml" filepath="$PROJECT_DIR$/Stupid-IDEA.iml" />
+      <module fileurl="file://$PROJECT_DIR$/stupid-calendar.iml" filepath="$PROJECT_DIR$/stupid-calendar.iml" />
     </modules>
   </component>
 </project>
